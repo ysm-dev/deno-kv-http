@@ -1,12 +1,16 @@
 # deno_kv_http
 
-A simple HTTP wrapper for [Deno KV](https://deno.land/manual@v1.36.1/runtime/kv) which you can use in other runtime (e.g. Node.js, Edge runtime).
+A simple HTTP wrapper for [Deno KV](https://deno.land/manual@v1.36.1/runtime/kv) which you can use in other runtime (e.g. Node.js, Browser, Vercel Edge runtime, Cloudflare Workers).
 
 ## Usage
 
-- Create new Deno Deploy project.
+- Create new Deno Deploy project: https://dash.deno.com/new
 
-- Copy & Paste this code to Deno Deploy.
+- Select `Hello World` - `Try with playground`
+
+![](https://bafkreifdnt5iqvdtswgdgjgnuh4iavvzybits32kmuhsrcn7ouvnwqqhlq.ipfs.dweb.link/)
+
+- Copy & Paste this code to Deno Deploy editor.
 
 ```ts
 import { HttpDenoKv } from "https://deno.land/x/deno_kv_http/mod.ts";
@@ -14,7 +18,9 @@ import { HttpDenoKv } from "https://deno.land/x/deno_kv_http/mod.ts";
 Deno.serve((req: Request) => HttpDenoKv(req));
 ```
 
-- Deploy it.
+- Click ▶︎ Save & Deploy button.
+
+![](https://bafkreidk7dumeh3mutr3gtg5xtxtslabdofiimclfyl5vx454yb4jdbzga.ipfs.dweb.link/)
 
 - Copy your Deno Deploy URL. (e.g. `https://your-project.deno.dev`)
 

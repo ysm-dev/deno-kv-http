@@ -1,8 +1,8 @@
-import { HttpDenoKv } from "./openKv.ts";
+import { DenoKvHttp } from "./deno-kv-http.ts";
 
 const URL = ["http://localhost:8000", "https://deno-kv-http.deno.dev"];
 
-const kv = HttpDenoKv(URL[1]);
+const kv = DenoKvHttp(URL[1]);
 
 async function main() {
   const r1 = kv.list({ prefix: ["foo"] }, { limit: 100, reverse: true });

@@ -1,15 +1,41 @@
 import { stringify, parse } from "https://esm.sh/superjson@1.13.1";
+import fetch from "https://esm.sh/node-fetch@3.3.2"
 
-type KvKey = Deno.KvKey;
-type KvConsistencyLevel = Deno.KvConsistencyLevel;
-type KvEntry<T = unknown> = Deno.KvEntry<T>;
-type KvEntryMaybe<T = unknown> = Deno.KvEntryMaybe<T>;
-type KvCommitResult = Deno.KvCommitResult;
-type KvListSelector = Deno.KvListSelector;
-type KvListOptions = Deno.KvListOptions;
-type KvListIterator<T = unknown> = Deno.KvListIterator<T>;
+type KvKey = readonly KvKeyPart[];
+type KvKeyPart = Uint8Array | string | number | bigint | boolean;
+type KvConsistencyLevel = "strong" | "eventual";
+type KvEntry<T> = { key: KvKey; value: T; versionstamp: string };
+type KvEntryMaybe<T> =
+  | KvEntry<T>
+  | {
+      key: KvKey;
+      value: null;
+      versionstamp: null;
+    };
+interface KvCommitResult {
+  ok: true;
+  versionstamp: string;
+}
+type KvListSelector =
+  | { prefix: KvKey }
+  | { prefix: KvKey; start: KvKey }
+  | { prefix: KvKey; end: KvKey }
+  | { start: KvKey; end: KvKey };
+interface KvListOptions {
+  limit?: number;
+  cursor?: string;
+  reverse?: boolean;
+  consistency?: KvConsistencyLevel;
+  batchSize?: number;
+}
+interface KvListIterator<T> {
+  get cursor(): string;
 
-export const HttpDenoKv = (endpoint: string) => {
+  next(): Promise<IteratorResult<KvEntry<T>, undefined>>;
+  [Symbol.asyncIterator](): AsyncIterableIterator<KvEntry<T>>;
+}
+
+export const DenoKvHttp = (endpoint: string) => {
   const kv = {
     async get<T = unknown>(
       key: KvKey,

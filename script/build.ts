@@ -1,10 +1,9 @@
-// ex. scripts/build_npm.ts
 import { build, emptyDir } from "https://deno.land/x/dnt@0.38.1/mod.ts";
 
 await emptyDir("./npm");
 
 await build({
-  entryPoints: ["./mod.ts"],
+  entryPoints: ["./deno/deno-kv-http.ts"],
   outDir: "./npm",
   shims: {
     // see JS docs for overview and more options
