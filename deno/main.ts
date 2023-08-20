@@ -1,6 +1,6 @@
 import { HttpDenoKv } from "./openKv.ts";
 
-const URL = ["http://localhost:8000"];
+const URL = ["http://localhost:8000", "https://openkv.deno.dev"];
 
 const kv = HttpDenoKv(URL[1]);
 
@@ -27,21 +27,21 @@ async function main() {
 
   console.log({ r4 });
 
-  const result = kv.list({ prefix: ["foo"] }, { limit: 10, reverse: true });
+  const result = kv.list({ prefix: ["foo"] }, { limit: 100, reverse: true });
 
   for await (const entry of result) {
-    // console.log(entry);
+    console.log(entry);
     // await kv.delete(entry.key);
   }
 
   console.log("cursor", result.cursor);
 
-  const r = await kv.getMany([
-    ["foo", 1n],
-    ["foo", 2n],
-  ]);
+  // const r = await kv.getMany([
+  //   ["foo", 1n],
+  //   ["foo", 2n],
+  // ]);
 
-  console.log(r);
+  // console.log(r);
 }
 
 main();
