@@ -54,3 +54,5 @@ const r = await kv.getMany([
   ["foo", 2n],
 ]);
 ```
+
+- `kv.atomic()`, `kv.close()` not supported yet.
