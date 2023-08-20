@@ -1,6 +1,6 @@
-# deno-kv-http
+# deno_kv_http
 
-A simple HTTP wrapper for [Deno KV](https://deno.land/x/kv) which you can use in other runtime (e.g. Node.js, Edge runtime).
+A simple HTTP wrapper for [Deno KV](https://deno.land/manual@v1.36.1/runtime/kv) which you can use in other runtime (e.g. Node.js, Edge runtime).
 
 ## Usage
 
@@ -9,7 +9,7 @@ A simple HTTP wrapper for [Deno KV](https://deno.land/x/kv) which you can use in
 - Copy & Paste this code to Deno Deploy.
 
 ```ts
-import { HttpDenoKv } from "https://github.com/ysm-dev/deno-kv-http/raw/main/mod.ts";
+import { HttpDenoKv } from "https://deno.land/x/deno_kv_http/mod.ts";
 
 Deno.serve((req: Request) => HttpDenoKv(req));
 ```

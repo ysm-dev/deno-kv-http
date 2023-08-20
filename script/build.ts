@@ -1,5 +1,5 @@
 // ex. scripts/build_npm.ts
-import { build, emptyDir } from "https://deno.land/x/dnt/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt@0.38.1/mod.ts";
 
 await emptyDir("./npm");
 
@@ -19,10 +19,10 @@ await build({
     license: "MIT",
     repository: {
       type: "git",
-      url: "git+https://github.com/ysm-dev/deno-kv-http.git",
+      url: "git+https://github.com/ysm-dev/deno_kv_http.git",
     },
     bugs: {
-      url: "https://github.com/ysm-dev/deno-kv-http/issues",
+      url: "https://github.com/ysm-dev/deno_kv_http/issues",
     },
   },
   postBuild() {
